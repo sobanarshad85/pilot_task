@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Splash from './splash';
-import Geolocation from '@react-native-community/geolocation';
 
 
 const splash = new Splash();
@@ -13,27 +12,9 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: null
         };
 
     }
-
-    componentDidMount() {
-        this.findCoordinates();
-    }
-
-    findCoordinates = async () => {
-        // await navigator.geolocation.getCurrentPosition(
-        //     position => {
-        //         const location = JSON.stringify(position);
-
-        //         this.setState({ location });
-        //     },
-        //     error => Alert.alert(error.message),
-        //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        // );
-        Geolocation.getCurrentPosition(info => console.warn(info));
-    };
 
     render() {
         return (
