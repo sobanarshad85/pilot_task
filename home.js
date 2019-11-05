@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Splash from './splash';
+import Toast from 'react-native-simple-toast';
+
 
 
 const splash = new Splash();
@@ -30,6 +32,7 @@ export default class Home extends Component {
                     style={{ marginBottom: 20 }}
                     onPress={async () => {
                         await splash.removeAsyncStorage('token')
+                        Toast.show('You Are Logged Out')
                         this.props.navigation.navigate('SplashScreen')
                     }}
                 >
