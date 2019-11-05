@@ -51,7 +51,7 @@ export default class Splash extends Component {
     async componentDidMount() {
         setTimeout(() => {
             this.checkToken();    
-        }, 1000);
+        }, 800);
         
     }
 

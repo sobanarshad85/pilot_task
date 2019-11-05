@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
+import Toast from 'react-native-simple-toast';
 import Splash from './splash';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -101,7 +102,7 @@ export default class Signup extends Component {
                                         <TouchableOpacity
                                             style={{ backgroundColor: '#395fed', width: '100%', height: 50, borderRadius: 5, justifyContent: 'center' }}
                                             onPress={() => {
-                                                console.warn('you are signed up')
+                                                Toast.show('You Have Signed Up')
                                                 this.props.navigation.navigate('SignInScreen')}}>
 
                                             <Text style={{ textAlign: 'center', color: 'white' }}>Sign up for free</Text>

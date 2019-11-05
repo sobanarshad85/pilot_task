@@ -8,6 +8,7 @@ import {
 import Splash from './splash';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ScrollView } from 'react-native-gesture-handler';
+import Toast from 'react-native-simple-toast';
 
 const splash = new Splash()
 
@@ -89,6 +90,7 @@ export default class Signin extends Component {
                                         <TouchableOpacity
                                             style={{ backgroundColor: '#395fed', width: '100%', height: 50, borderRadius: 5, justifyContent: 'center' }}
                                             onPress={async () => {
+                                                Toast.show('You Are Signed In')
                                                 await this.setAsyncStorage('token', 'token')
                                                 // splash.checkToken()
                                                 this.props.navigation.navigate('AppStack')
