@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     View, Text,
-    SafeAreaView
+    SafeAreaView, Image
 } from 'react-native';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import Splash from './splash';
@@ -16,6 +16,8 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            pic: null,
+            loading: true,
             searchTerm: 'sadfdsaf',
             data: [
                 {
@@ -43,10 +45,18 @@ export default class Home extends Component {
 
     }
 
+    async componentDidMount() {
+        const result = await fetch('http://192.168.35.98:3333/auth/test');
+        const aa = await result.json()
+        console.warn(aa.profile_image);
+
+        this.setState({ pic: `http://192.168.35.98:3333/profile_images/${aa.profile_image}`,loading:false }, ()=>console.warn(typeof this.state.pic))
+    }
+
     searchUpdated(term) {
-        if (term.length<=3) {
-            term='%&-'
-            this.setState({searchTerm:term})
+        if (term.length <= 3) {
+            term = '%&-'
+            this.setState({ searchTerm: term })
         }
         if (term.length >= 4) {
             this.setState({ searchTerm: term })
@@ -84,7 +94,9 @@ export default class Home extends Component {
                         <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', color: '#395fed' }}>Go to maps</Text>
                     </TouchableOpacity>
                 </View>
-
+                {!this.state.loading && <Image style={{ height: 200, width: 200 }}
+                    source={{uri:this.state.pic}} />
+                }
                 <TouchableOpacity
                     style={{ marginBottom: 20 }}
                     onPress={async () => {
